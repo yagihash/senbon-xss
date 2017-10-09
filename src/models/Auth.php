@@ -51,17 +51,31 @@ class Auth
         }
     }
 
+    /**
+     * @param array $session
+     * @return bool
+     */
     static function isAuthed(array $session)
     {
         return isset($session['user']);
     }
 
+    /**
+     * @param array $session
+     * @return bool
+     */
     static function isAuthedAdmin(array $session)
     {
         return (isset($session['user']) and
             $session['user']->isAdmin());
     }
 
+    /**
+     * @param array $session
+     * @param int $stageid
+     * @param PDO $pdo
+     * @return bool
+     */
     static function isValidAccessToStage(array $session, int $stageid, PDO $pdo)
     {
         return (isset($session['user']) and
@@ -69,6 +83,10 @@ class Auth
             Auth::isAuthedAdmin($session));
     }
 
+    /**
+     * @param $thisarg
+     * @return array
+     */
     static function generateTokens($thisarg)
     {
         $csrfNameKey = $thisarg->csrf->getTokenNameKey();

@@ -25,6 +25,14 @@ class Stages
         return $ret;
     }
 
+    /**
+     * @param PDO $pdo
+     * @param string $name
+     * @param string $qtext
+     * @param int $genreid
+     * @param string $flag
+     * @throws Exception
+     */
     function createStage(PDO $pdo, string $name, string $qtext, int $genreid, string $flag)
     {
         $key = bin2hex(openssl_random_pseudo_bytes(20));
@@ -46,6 +54,10 @@ class Stages
         $stmt->execute([$key, $name, $qtext, $genreid, $flag]);
     }
 
+    /**
+     * @param PDO $pdo
+     * @return array
+     */
     function fetchAllStagesForJson(PDO $pdo)
     {
         $ret = [];

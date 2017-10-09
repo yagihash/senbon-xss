@@ -8,7 +8,13 @@
 
 class Genre
 {
+    /**
+     * @var int
+     */
     protected $id = 0;
+    /**
+     * @var string
+     */
     protected $name = '';
 
     /**
