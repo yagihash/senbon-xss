@@ -140,6 +140,7 @@ $app->group('/stage/{key:[a-f0-9]{40}}', function () {
                      ********************************/
 
                     $args = [
+                        'cwd' => getenv('PATH4JS'),
                         'node' => getenv('PATH4NODE'),
                         'key' => $key,
                         'url' => $params['url'],

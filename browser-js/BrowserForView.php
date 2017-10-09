@@ -26,14 +26,8 @@ class BrowserForView
             2 => array("file", "/tmp/error-output.txt", "a"),
         ];
 
-        $cwd = '/Users/yagihash/PhpstormProjects/senbon-xss/browser-js';
+        $cwd = $this->args['cwd'];
         $cmd = 'timeout -sINT 3s ' . $node . ' view.js';
-
-        `echo $cmd >> /tmp/hoge.txt`;
-        `echo $key >> /tmp/hoge.txt`;
-        `echo $url >> /tmp/hoge.txt`;
-        `echo $flag >> /tmp/hoge.txt`;
-
 
         $env = [
             'KEY' => $key,
