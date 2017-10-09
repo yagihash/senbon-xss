@@ -1,0 +1,8 @@
+/vendor/
+.cache
+.DS_Store
+.env
+.idea
+/browser-js/node_modules/
+/private/senbon-xss.db
+/templates/nginx-conf-fpm.html

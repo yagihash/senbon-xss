@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+{% block title %}Login/Register{% endblock %}
+{% block content %}
+<h1>Login/Register</h1>
+<hr>
+{% if error %}
+<button class="error">{{ error }}</button>{% endif %}
+{% if message %}
+<button class="success">{{ message }}</button>{% endif %}
+<form method="post">
+    <div class="third">
+        <input class="stack" name="username" type="text" placeholder="username(printable asc)" value="{{ username }}"
+               required autofocus>
+        <input class="stack" name="password" type="password" placeholder="password" required>
+        <input type="hidden" name="{{ csrf.keys.name }}" value="{{ csrf.name }}">
+        <input type="hidden" name="{{ csrf.keys.value }}" value="{{ csrf.value }}">
+        <input type="submit" class="stack icon-paper-plane" formaction="{{ path_for('login') }}" value="Login">
+        <button class="stack icon-paper-plane" formaction="{{ path_for('register') }}">Register</button>
+    </div>
+</form>
+{% endblock %}

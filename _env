@@ -1,0 +1,2 @@
+PATH4DB=/relational/path/from/this/dir/to/sqlite.db
+PATH4NODE=/usr/local/bin/node

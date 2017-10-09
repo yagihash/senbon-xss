@@ -1,0 +1,10 @@
+{% extends '_base.html' %}
+{% block title %}Admin{% endblock %}
+{% block content %}
+<h1>Admin</h1>
+<hr>
+<h2>Administrator menu</h2>
+<a href="{{ path_for('admin-stage') }}" class="stack pseudo button">Stage editor</a>
+<a href="{{ path_for('admin-user') }}" class="stack pseudo button">User manager</a>
+<a href="{{ path_for('admin-export') }}" class="stack pseudo button">Export config</a>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends '_base.html' %}
+{% block title %}Stage editor{% endblock %}
+{% block content %}
+<h1>Admin</h1>
+<hr>
+<h2>Stage creator</h2>
+{% if error %}<button class="error">{{ error }}</button>{% endif %}
+{% if message %}<button class="success">{{ message }}</button>{% endif %}
+<form class="stage-edit" method="post" action="{{ path_for('stage-create') }}">
+    <input type="hidden" name="{{ csrf.keys.name }}" value="{{ csrf.name }}">
+    <input type="hidden" name="{{ csrf.keys.value }}" value="{{ csrf.value }}">
+    <input class="stack" type="text" name="name" value="" placeholder="Stage Name">
+    <input class="stack" type="password" name="flag" value="" placeholder="Flag">
+    <textarea class="stack" name="qtext"></textarea>
+    <select class="stack" name="modeid">{% for mode in modes %}<option value="{{ mode.getId() }}">{{ mode.getName() }}</option>{% endfor %}</select>
+    <select class="stack" name="genreid">{% for genre in genres %}<option value="{{ genre.getId() }}">{{ genre.getName() }}</option>{% endfor %}</select>
+    <input class="stack" type="submit" value="Create">
+</form>
+<h2>Stage editor</h2>
+<table id="stage-editor">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th class="stage-edit">Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for stage in stages %}
+    <tr>
+        <td><a href="{{ path_for('stage', {'key': stage.getKey()}) }}">{{ loop.index }}</a></td>
+        <td class="stage-edit" id="{{ stage.getKey() }}">
+            <form class="edit" method="post" action="{{ path_for('stage-edit', {'key': stage.getKey()}) }}">
+                <input type="hidden" name="{{ csrf.keys.name }}" value="{{ csrf.name }}">
+                <input type="hidden" name="{{ csrf.keys.value }}" value="{{ csrf.value }}">
+                <input class="stack" type="text" value="{{ stage.getKey() }}" title="Key(not editable)" disabled>
+                <input class="stack" type="text" name="name" value="{{ stage.getName() }}" title="Stage name" placeholder="Stage Name">
+                <input class="stack" type="password" name="flag" value="{{ stage.getFlag() }}" title="Flag" placeholder="Flag">
+                <textarea class="stack" name="qtext" title="Question text">{{ stage.getQtext() }}</textarea>
+                <select class="stack" name="modeid" title="Browser mode">{% for mode in modes %}<option value="{{ mode.getId() }}" {% if mode.getId() == stage.getModeid() %}selected{% endif %}>{{ mode.getName() }}</option>{% endfor %}</select>
+                <select class="stack" name="genreid" title="Genre">{% for genre in genres %}<option value="{{ genre.getId() }}" {% if genre.getName() == stage.getGenre() %}selected{% endif %}>{{ genre.getName() }}</option>{% endfor %}</select>
+                <input class="stack" type="submit" value="Edit">
+            </form>
+            <form class="delete" method="post" action="{{ path_for('stage-delete', {'key': stage.getKey()}) }}">
+                <input type="hidden" name="{{ csrf.keys.name }}" value="{{ csrf.name }}">
+                <input type="hidden" name="{{ csrf.keys.value }}" value="{{ csrf.value }}">
+                <button class="stack error">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    <tr>
+    </tbody>
+</table>
+{% endblock %}

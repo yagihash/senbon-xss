@@ -1,0 +1,34 @@
+{% extends '_base.html' %}
+{% block title %}{{ stage.getName() }}{% endblock %}
+{% block content %}
+<h1>Stage</h1>
+<hr>
+<h2>{{ stage.getName() }}[{{ stage.getGenre() }}]</h2>
+<article class="card">
+    <header>
+        <h3>Question</h3>{% if user.isAdmin() %}<a href="{{ path_for('admin-stage') }}#{{ stage.getKey() }}">[edit]</a>{% endif %}
+    </header>
+    <p class="markdown">{{ stage.getQtext() }}</p>
+    <hr>
+    <footer>
+        <form method="post" action="{{ path_for('stage-url', {'key': stage.getKey()}) }}">
+            <input type="text" name="url" placeholder="URL form">
+            <input type="hidden" name="{{ csrf.keys.name }}" value="{{ csrf.name }}">
+            <input type="hidden" name="{{ csrf.keys.value }}" value="{{ csrf.value }}">
+            <input type="submit" value="submit">
+        </form>
+        <form method="post" action="{{ path_for('stage-flag', {'key': stage.getKey()}) }}">
+            <input type="text" name="flag" placeholder="FLAG form">
+            <input type="hidden" name="{{ csrf.keys.name }}" value="{{ csrf.name }}">
+            <input type="hidden" name="{{ csrf.keys.value }}" value="{{ csrf.value }}">
+            <input type="submit" value="submit">
+        </form>
+        {% if message %}
+        <button class="success">{{ message }}</button>
+        {% endif %}
+        {% if error %}
+        <button class="error">{{ error }}</button>
+        {% endif %}
+    </footer>
+</article>
+{% endblock %}

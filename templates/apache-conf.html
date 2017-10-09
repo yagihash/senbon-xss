@@ -1,0 +1,9 @@
+{% for stage in stages %}
+# Stage{{ loop.index }}: {{ stage.getName() }}
+Listen {{ 8000+loop.index }}
+<VirtualHost 127.0.0.1:{{ 8000+loop.index }}>
+    ServerName {{ stage.getKey() }}.knock.xss.moe
+    DocumentRoot /var/www/stage{{ '%04d'|format(loop.index) }}
+</VirtualHost>
+
+{% endfor %}
