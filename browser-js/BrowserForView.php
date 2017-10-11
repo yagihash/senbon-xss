@@ -27,7 +27,7 @@ class BrowserForView
         ];
 
         $cwd = $this->args['cwd'];
-        $cmd = 'timeout -sINT 3s ' . $node . ' view.js';
+        $cmd = 'timeout -sINT 5s ' . $node . ' view.js';
 
         $env = [
             'KEY' => $key,
