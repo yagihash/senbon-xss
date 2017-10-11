@@ -16,11 +16,11 @@ class Stages
     {
         $ret = [];
 
-        $q = 'SELECT stages.id AS id, key, stages.name AS stagename, qtext, genres.name AS genrename, flag, (SELECT COUNT(DISTINCT userid) FROM flagsubmissions, users WHERE pf = 1 AND stages.id = stageid AND userid = users.id AND users.admin = 0) AS clearedusers FROM stages, genres WHERE genres.id = genreid';
+        $q = 'SELECT stages.id AS id, key, stages.name AS stagename, qtext, genres.name AS genrename, flag, (SELECT COUNT(DISTINCT userid) FROM flagsubmissions, users WHERE pf = 1 AND stages.id = stageid AND userid = users.id AND users.admin = 0) AS clearedusers, modeid FROM stages, genres WHERE genres.id = genreid';
         $r = $pdo->query($q);
         $rows = $r->fetchAll();
         foreach ($rows as $row) {
-            $ret[] = new Stage($pdo, $row['key'], $row['id'], $row['stagename'], $row['qtext'], $row['genrename'], $row['flag'], $row['clearedusers']);
+            $ret[] = new Stage($pdo, $row['key'], $row['id'], $row['stagename'], $row['qtext'], $row['genrename'], $row['flag'], $row['clearedusers'], $row['modeid']);
         }
         return $ret;
     }
