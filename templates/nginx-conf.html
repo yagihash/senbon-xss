@@ -2,7 +2,7 @@
 # Stage{{ loop.index }}: {{ stage.getName() }}
 server {
     listen 80;
-    server_name {{ stage.getKey() }}.knock.xss.moe;
+    server_name {{ stage.getKey() }}.{{ domain }};
     proxy_http_version 1.1;
     proxy_set_header host $host;
 

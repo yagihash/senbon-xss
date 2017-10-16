@@ -19,6 +19,7 @@ $app->get('/index', function (Request $req, Response $res, array $args) {
         $stages = new Stages();
 
         return $this->view->render($res, 'index.html', [
+            'domain' => getenv('DOMAIN'),
             'pdo' => $this->pdo,
             'user' => $_SESSION['user'],
             'stages' => $stages->fetchAllStages($this->pdo),
@@ -362,6 +363,7 @@ var_dump($stages->fetchAllStages($this->pdo)[0]->getModeid());
                     $stages = $stages->fetchAllStages($this->pdo);
 
                     return $this->view->render($res, 'nginx-conf.html', [
+                        'domain' => getenv('DOMAIN'),
                         'stages' => $stages,
                     ])->withHeader('Content-Type', 'text/plain');
                 } else {
@@ -379,6 +381,7 @@ var_dump($stages->fetchAllStages($this->pdo)[0]->getModeid());
                     $stages = $stages->fetchAllStages($this->pdo);
 
                     return $this->view->render($res, 'nginx-conf-fpm.html', [
+                        'domain' => getenv('DOMAIN'),
                         'stages' => $stages,
                     ])->withHeader('Content-Type', 'text/plain');
                 } else {

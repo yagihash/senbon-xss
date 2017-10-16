@@ -38,7 +38,8 @@ class Stages
         $key = bin2hex(openssl_random_pseudo_bytes(20));
 
         if ($qtext === '') {
-            $qtext = '[http://' . $key . '.knocsk.xss.moe/](http://' . $key . '.knock.xss.moe/?q=XSS)';
+            $domain = getenv('DOMAIN');
+            $qtext = sprintf('[http://%s.%s/](http://%s.%s/?q=XSS)', $key, $domain, $key, $domain);
         }
 
         if ($flag === '') {
