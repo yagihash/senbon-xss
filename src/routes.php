@@ -81,7 +81,6 @@ $app->post('/register', function (Request $req, Response $res, array $args) {
  * Ranking
  *************************************************************/
 $app->get('/ranking', function (Request $req, Response $res, array $args) {
-    $key = $req->getAttribute('key');
     if (Auth::isAuthed($_SESSION)) {
         $tmp = new Ranking();
         $ranking = $tmp->fetchRanking($this->pdo);
@@ -217,7 +216,6 @@ $app->group('/admin', function () {
                     $modes = new Modes();
 
                     $messages = $this->flash->getMessages();
-var_dump($stages->fetchAllStages($this->pdo)[0]->getModeid());
                     return $this->view->render($res, 'admin-stage.html', [
                         'pdo' => $this->pdo,
                         'user' => $_SESSION['user'],
