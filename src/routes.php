@@ -116,7 +116,7 @@ $app->group('/stage/{key:[a-f0-9]{40}}', function () {
                     'csrf' => Auth::generateTokens($this),
                 ]);
             } else {
-                return $res->withStatus(403)->write(HTTP403MSG);
+                return $res->withStatus(303)->withHeader('Location', $this->router->pathFor('top'));
             }
         } catch (Exception $e) {
             return $res->withStatus(404)->write(HTTP404MSG);
