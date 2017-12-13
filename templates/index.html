@@ -30,8 +30,7 @@
     {% for stage in stages %}
     <tr>
         <td>{{ loop.index }}</td>
-        <td>{% if stage.getId() <= user.calcStage(pdo) or user.isAdmin() %}<a
-                href="{{ path_for('stage', {'key': stage.getKey()}) }}">{{ stage.getName() }}</a>{% else %}{{
+        <td>{% if stage.getId() <= user.calcStage(pdo) or user.isAdmin() %}<a href="{{ path_for('stage', {'key': stage.getKey()}) }}">{{ stage.getName() }}</a>{% else %}{{
             stage.getName() }}{% endif %}
         </td>
         <td>{{ stage.getGenre() }}</td>
