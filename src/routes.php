@@ -124,7 +124,6 @@ $app->group('/stage/{key:[a-f0-9]{40}}', function () {
     })->setName('stage');
 
     $this->post('/url', function (Request $req, Response $res, array $args) {
-        // KEY=16cce636481ad7ae77014749eef3968277158cd1 FLAG=FLAG{hoge} URL='https://requestb.in/16c1lxn1' timeout -sINT 3s node test.js
         try {
             $key = $req->getAttribute('key');
             $stage = new Stage($this->pdo, $key);
@@ -159,7 +158,7 @@ $app->group('/stage/{key:[a-f0-9]{40}}', function () {
 
                 return $res->withStatus(303)->withHeader('Location', $this->router->pathFor('stage', ['key' => $stage->getKey()]));
             } else {
-                return $res->withStatus(403)->write(HTTP403MSG);
+                return $res->withStatus(303)->withHeader('Location', $this->router->pathFor('top'));
             }
         } catch (Exception $e) {
             return $res->withStatus(404)->write(HTTP404MSG);
@@ -181,10 +180,8 @@ $app->group('/stage/{key:[a-f0-9]{40}}', function () {
                 } else {
                     $this->flash->addMessage('error', 'Oops. It\'s not correct. Try harder!');
                 }
-                return $res->withStatus(303)->withHeader('Location', $this->router->pathFor('stage', ['key' => $stage->getKey()]));
-            } else {
-                return $res->withStatus(403)->write(HTTP403MSG);
             }
+            return $res->withStatus(303)->withHeader('Location', $this->router->pathFor('stage', ['key' => $stage->getKey()]));
         } catch (Exception $e) {
             return $res->withStatus(404)->write(HTTP404MSG);
         }
