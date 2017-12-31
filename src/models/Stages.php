@@ -50,9 +50,9 @@ class Stages
             throw new Exception('The flag isn\'t match the format(re: \AFLAG{.+?}\z).');
         }
 
-        $q = 'INSERT INTO stages(key, name, qtext, genreid, flag) VALUES(?, ?, ?, ?, ?)';
+        $q = 'INSERT INTO stages(key, name, qtext, genreid, flag) VALUES(?, \'Stage\'||(SELECT count(id)+1 FROM stages), ?, ?, ?)';
         $stmt = $pdo->prepare($q);
-        $stmt->execute([$key, $name, $qtext, $genreid, $flag]);
+        $stmt->execute([$key, $qtext, $genreid, $flag]);
     }
 
     /**
