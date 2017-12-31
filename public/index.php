@@ -22,6 +22,7 @@ Resque::setBackend('localhost:6379');
 
 require __DIR__ . '/../src/models.php';
 
+ini_set('session.gc_maxlifetime', 86400);s
 session_start();
 
 // Instantiate the app
