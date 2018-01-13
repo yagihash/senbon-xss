@@ -78,7 +78,6 @@ $(function () {
     $("input[name=flag]").on({
         "keyup": function (e) {
             let flag = $(this).val()
-            console.log(flag)
             let isValid = !!(flag.match(/^FLAG{.+}$/))
             $(this).closest("form").children("input[type=submit]")[0].disabled = !isValid
         }
