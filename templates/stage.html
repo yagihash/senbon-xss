@@ -15,13 +15,13 @@
             <input type="text" name="url" placeholder="URL form">
             <input type="hidden" name="{{ csrf.keys.name }}" value="{{ csrf.name }}">
             <input type="hidden" name="{{ csrf.keys.value }}" value="{{ csrf.value }}">
-            <input type="submit" value="submit">
+            <input type="submit" value="submit" disabled>
         </form>
         <form method="post" action="{{ path_for('stage-flag', {'key': stage.getKey()}) }}">
             <input type="text" name="flag" placeholder="FLAG form">
             <input type="hidden" name="{{ csrf.keys.name }}" value="{{ csrf.name }}">
             <input type="hidden" name="{{ csrf.keys.value }}" value="{{ csrf.value }}">
-            <input type="submit" value="submit">
+            <input type="submit" value="submit" disabled>
         </form>
         {% if message %}
         <button class="success">{{ message }}</button>
