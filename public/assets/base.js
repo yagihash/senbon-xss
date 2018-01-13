@@ -66,6 +66,24 @@ $(function () {
             $(elm).attr("target", "_blank")
     })
 
+    $("input[name=url]").on({
+        "keyup": function (e) {
+            let url = $(this).val()
+            let isValid = !!(url.match(/^https?:\/\/.+$/))
+            $(this).closest("form").children("input[type=submit]")[0].disabled = !isValid
+
+        }
+    })
+
+    $("input[name=flag]").on({
+        "keyup": function (e) {
+            let flag = $(this).val()
+            console.log(flag)
+            let isValid = !!(flag.match(/^FLAG{.+}$/))
+            $(this).closest("form").children("input[type=submit]")[0].disabled = !isValid
+        }
+    })
+
     function updateTokens(csrf) {
         $(`input[name=${csrf["keys"]["name"]}]`).val(csrf["name"])
         $(`input[name=${csrf["keys"]["value"]}]`).val(csrf["value"])
