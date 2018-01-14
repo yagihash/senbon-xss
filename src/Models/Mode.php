@@ -2,11 +2,13 @@
 /**
  * Created by PhpStorm.
  * User: yagihash
- * Date: 2017/09/23
- * Time: 16:46
+ * Date: 2017/09/30
+ * Time: 18:41
  */
 
-class Genre
+namespace SenbonXSS\Models;
+
+class Mode
 {
     /**
      * @var int
@@ -16,16 +18,22 @@ class Genre
      * @var string
      */
     protected $name = '';
+    /**
+     * @var string
+     */
+    protected $handler = '';
 
     /**
-     * Genre constructor.
+     * Mode constructor.
      * @param int $id
      * @param string $name
+     * @param string $handler
      */
-    function __construct(int $id, string $name)
+    function __construct(int $id, string $name, string $handler)
     {
         $this->id = $id;
-        $this->name = $name;
+        $this->name =$name;
+        $this->handler = $handler;
     }
 
     /**
@@ -42,5 +50,13 @@ class Genre
     function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    function getHandler(): string
+    {
+        return $this->handler;
     }
 }

@@ -2,24 +2,28 @@
 /**
  * Created by PhpStorm.
  * User: yagihash
- * Date: 2017/09/30
- * Time: 18:41
+ * Date: 2017/09/26
+ * Time: 15:11
  */
 
-class Modes
+namespace SenbonXSS\Models;
+
+use PDO;
+
+class Genres
 {
     /**
      * @param PDO $pdo
-     * @return Mode[]
+     * @return Genre[]
      */
-    function fetchAllModes(PDO $pdo): array
+    function fetchAllGenres(PDO $pdo): array
     {
         $ret = [];
-        $q = 'SELECT id, name, handler FROM stagemode';
+        $q = 'SELECT id, name FROM genres';
         $r = $pdo->query($q);
         $rows = $r->fetchAll();
         foreach ($rows as $row) {
-            $ret[] = new Mode($row['id'], $row['name'], $row['handler']);
+            $ret[] = new Genre($row['id'], $row['name']);
         }
         return $ret;
     }

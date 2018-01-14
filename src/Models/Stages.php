@@ -6,6 +6,11 @@
  * Time: 16:47
  */
 
+namespace SenbonXSS\Models;
+
+use PDO;
+use Exception;
+
 class Stages
 {
     /**

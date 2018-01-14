@@ -2,6 +2,13 @@
 
 use Slim\Http\Request;
 use Slim\Http\Response;
+use SenbonXSS\Models\Auth;
+use SenbonXSS\Models\Users;
+use SenbonXSS\Models\Modes;
+use SenbonXSS\Models\Stage;
+use SenbonXSS\Models\Stages;
+use SenbonXSS\Models\Genres;
+use SenbonXSS\Models\Ranking;
 
 define('HTTP403MSG', '403 Forbidden');
 define('HTTP404MSG', '404 Not Found');
