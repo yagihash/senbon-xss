@@ -6,6 +6,10 @@
  * Time: 16:44
  */
 
+namespace SenbonXSS\Models;
+
+use PDO;
+
 class User
 {
     /**

@@ -6,6 +6,11 @@
  * Time: 16:45
  */
 
+namespace SenbonXSS\Models;
+
+use PDO;
+use Exception;
+
 class Stage
 {
     /**
@@ -109,7 +114,6 @@ class Stage
      * @param string $qtext
      * @param int $genreid
      * @param int $modeid
-     * @param string $key
      */
     function edit(PDO $pdo, string $name, string $flag, string $qtext, int $genreid, int $modeid)
     {

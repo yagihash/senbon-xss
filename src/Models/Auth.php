@@ -6,6 +6,12 @@
  * Time: 16:42
  */
 
+namespace SenbonXSS\Models;
+
+use PDO;
+use PDOException;
+use Exception;
+
 class Auth
 {
     /**

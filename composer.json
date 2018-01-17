@@ -28,6 +28,11 @@
     "config": {
         "process-timeout" : 0
     },
+    "autoload": {
+      "psr-4": {
+        "SenbonXSS\\": "src/"
+      }
+    },
     "scripts": {
         "start": "php -S localhost:8080 -t public public/index.php",
         "test": "phpunit"

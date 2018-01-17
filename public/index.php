@@ -20,26 +20,13 @@ if (is_readable($dot_env)) {
 
 Resque::setBackend('localhost:6379');
 
-require __DIR__ . '/../src/models.php';
-
 ini_set('session.gc_maxlifetime', 86400);
 session_start();
 
 // Instantiate the app
-$settings = require __DIR__ . '/../src/settings.php';
+$settings = require __DIR__ . '/../config/settings.php';
 $app = new \Slim\App($settings);
+$bootstrap = new \SenbonXSS\Bootstrap($app);
 
-// Get container
-$container = $app->getContainer();
-
-// Set up dependencies
-require __DIR__ . '/../src/dependencies.php';
-
-// Register middleware
-require __DIR__ . '/../src/middleware.php';
-
-// Register routes
-require __DIR__ . '/../src/routes.php';
-
-// Run app
-$app->run();
+// Start app
+$bootstrap->start();

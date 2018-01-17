@@ -6,6 +6,10 @@
  * Time: 16:46
  */
 
+namespace SenbonXSS\Models;
+
+use PDO;
+
 class Ranking
 {
     /**
