@@ -26,15 +26,9 @@ session_start();
 // Instantiate the app
 $settings = require __DIR__ . '/../src/settings.php';
 $app = new \Slim\App($settings);
+$bootstrap = new \SenbonXSS\Bootstrap($app);
 
-// Get container
-$container = $app->getContainer();
-
-// Set up dependencies
-require __DIR__ . '/../src/dependencies.php';
-
-// Register middleware
-require __DIR__ . '/../src/middleware.php';
+$bootstrap->start();
 
 // Register routes
 require __DIR__ . '/../src/routes.php';
