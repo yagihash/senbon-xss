@@ -24,7 +24,7 @@ ini_set('session.gc_maxlifetime', 86400);
 session_start();
 
 // Instantiate the app
-$settings = require __DIR__ . '/../src/settings.php';
+$settings = require __DIR__ . '/../config/settings.php';
 $app = new \Slim\App($settings);
 $bootstrap = new \SenbonXSS\Bootstrap($app);
 
