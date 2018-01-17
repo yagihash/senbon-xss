@@ -12,6 +12,7 @@ use Slim\Flash\Messages;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Monolog\Handler\StreamHandler;
+use SenbonXSS\Route;
 
 /**
  * Class Bootstrap
@@ -41,6 +42,9 @@ class Bootstrap
     {
         $this->registerDependencies();
         $this->registerMiddleware();
+        (new Route($this->app))->registerRouting();
+
+        $this->app->run();
     }
 
     /**

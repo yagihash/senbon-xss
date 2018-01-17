@@ -27,7 +27,7 @@ class Auth
         $stmt = $pdo->prepare($q);
         $stmt->execute([$username]);
         $r = $stmt->fetch();
-        if (password_verify($password, $r['password'])) {
+        if (!password_verify($password, $r['password'])) {
             return new User($pdo, $r['username'], ($r['admin'] === '1'));
         } else {
             throw new Exception('Invalid username or password.');
