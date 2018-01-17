@@ -10,7 +10,8 @@ namespace SenbonXSS\Models;
 
 use PDO;
 
-class User {
+class User
+{
     /**
      * @var int
      */
