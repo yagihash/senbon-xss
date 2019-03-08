@@ -20,7 +20,7 @@ class Ranking
     {
         $ret = [];
 
-        $q = 'SELECT DISTINCT username, stageid FROM flagsubmissions, users WHERE users.id = userid AND users.admin = 0 AND pf = 1 GROUP BY userid ORDER BY stageid DESC, t ASC LIMIT 50';
+        $q = 'SELECT DISTINCT username, stageid FROM flagsubmissions, users WHERE users.id = userid AND users.admin = 0 AND pf = 1 GROUP BY userid ORDER BY stageid DESC, t ASC LIMIT 100';
         $r = $pdo->query($q);
         $rows = $r->fetchAll();
         foreach ($rows as $i => $row) {
