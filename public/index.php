@@ -14,7 +14,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $dot_env = __DIR__ . '/../.env';
 if (is_readable($dot_env)) {
-    $dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
+    $dotenv = Dotenv\Dotenv::create(__DIR__ . '/../');
     $dotenv->load();
 }
 
