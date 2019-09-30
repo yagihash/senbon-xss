@@ -17,7 +17,7 @@
         "slim/php-view": "^2.0",
         "monolog/monolog": "^1.17",
         "slim/twig-view": "^2.3",
-        "slim/csrf": "^0.8.1",
+        "slim/csrf": "^1.0.0",
         "vlucas/phpdotenv": "^3.0.0",
         "slim/flash": "^0.4.0",
         "chrisboulton/php-resque": "dev-master"
