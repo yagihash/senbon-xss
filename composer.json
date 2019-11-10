@@ -23,7 +23,7 @@
         "chrisboulton/php-resque": "dev-master"
     },
     "require-dev": {
-        "phpunit/phpunit": "8.0.4"
+        "phpunit/phpunit": "8.4.3"
     },
     "config": {
         "process-timeout" : 0
