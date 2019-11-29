@@ -1,2 +1,2 @@
-# XSS Thousand Knocks
-▂▅▇█▓▒░(’ω’)░▒▓█▇▅▂うわあああああああ
+# senbon-xss
+
