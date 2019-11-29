@@ -1,0 +1,8 @@
+{
+  "name": "senbon-xss-worker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/yagihash/senbon-xss",
+  "author": "yagihash",
+  "license": "MIT"
+}
