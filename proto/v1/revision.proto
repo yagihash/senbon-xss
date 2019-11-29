@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package knock.api.v1;
+
+option go_package = "v1/revision;revision";
+
+service Revision {
+  rpc GetRevision (GetRevisionRequest) returns (RevisionResponse) {}
+}
+
+message GetRevisionRequest {}
+
+message RevisionResponse {
+  string revision = 1;
+}
