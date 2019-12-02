@@ -1,14 +1,14 @@
 package main
 
 import (
-	"log"
-	"net"
+	"context"
 	"os"
+	"os/signal"
+	"time"
 
-	"github.com/yagihash/senbon-xss/server/internal/service"
-
-	pb "github.com/yagihash/senbon-xss/server/internal/pb/v1/revision"
-	"google.golang.org/grpc"
+	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
+	"github.com/yagihash/senbon-xss/server/internal/model/revision"
 )
 
 const (
@@ -27,16 +27,26 @@ func realMain() int {
 	if !ok {
 		port = "8080"
 	}
-	lp, err := net.Listen("tcp", ":"+port)
-	if err != nil {
-		log.Println(err)
-		return exitErr
-	}
 
-	server := grpc.NewServer()
-	pb.RegisterRevisionServer(server, &service.RevisionService{})
-	if err := server.Serve(lp); err != nil {
-		log.Println(err)
+	e := echo.New()
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
+
+	e.GET("/", revision.GetRevision)
+
+	go func() {
+		if err := e.Start(":" + port); err != nil {
+			e.Logger.Info("shutting down the server")
+		}
+	}()
+
+	quit := make(chan os.Signal)
+	signal.Notify(quit, os.Interrupt)
+	<-quit
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	if err := e.Shutdown(ctx); err != nil {
+		e.Logger.Error(err)
 		return exitErr
 	}
 

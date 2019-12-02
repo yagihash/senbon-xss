@@ -1,0 +1,10 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t','gcr.io/knock-xss-moe/senbon-xss-api', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/knock-xss-moe/senbon-xss-api']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'senbon-xss-api', '--image', 'gcr.io/knock-xss-moe/senbon-xss-api', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
+images:
+- gcr.io/knock-xss-moe/senbon-xss-api
+
