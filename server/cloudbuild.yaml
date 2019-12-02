@@ -1,6 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t','gcr.io/knock-xss-moe/senbon-xss-api', '.']
+  args: ['build', '-t','gcr.io/knock-xss-moe/senbon-xss-api', './server']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/knock-xss-moe/senbon-xss-api']
 - name: 'gcr.io/cloud-builders/gcloud'
