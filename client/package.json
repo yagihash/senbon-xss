@@ -4,5 +4,6 @@
   "main": "index.js",
   "repository": "https://github.com/yagihash/senbon-xss",
   "author": "yagihash",
-  "license": "MIT"
+  "license": "MIT",
+  "private": true
 }
