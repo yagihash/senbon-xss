@@ -1,3 +1,5 @@
+.DEFAULT_GOAL := build
+
 BIN ?= server
 REVISION := $(shell git describe --always)
 LDFLAGS := '-w -s -X github.com/yagihash/senbon-xss/server/internal/model/revision.revision=$(REVISION)'
@@ -16,7 +18,7 @@ vet:
 
 .PHONY: test
 test: vet
-	richgo test -v -cover -race ./...
+	richgo test -v -cover -race ./... || go test -v -cover -race ./...
 
 .PHONY: protoc
 protoc:
