@@ -4,8 +4,6 @@ BIN ?= server
 REVISION := $(shell git describe --always)
 LDFLAGS := '-w -s -X github.com/yagihash/senbon-xss/server/internal/model/revision.revision=$(REVISION)'
 
-export CGO_ENABLED ?= 1
-
 .PHONY: build
 build: test
 	go build -ldflags $(LDFLAGS) -v -o bin/$(BIN) cmd/$(BIN)/main.go
