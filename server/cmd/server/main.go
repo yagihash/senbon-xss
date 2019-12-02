@@ -34,9 +34,7 @@ func realMain() int {
 	}
 
 	server := grpc.NewServer()
-	revisionService := &service.RevisionService{}
-
-	pb.RegisterRevisionServer(server, revisionService)
+	pb.RegisterRevisionServer(server, &service.RevisionService{})
 	if err := server.Serve(lp); err != nil {
 		log.Println(err)
 		return exitErr
