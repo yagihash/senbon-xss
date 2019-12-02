@@ -6,5 +6,5 @@ ENV GOOS linux
 RUN make build
 
 FROM alpine
-COPY --from=builder /go/src/github.com/yagihash/play-cloud-run/bin/server /server
+COPY --from=builder /go/src/github.com/yagihash/senbon-xss/server/bin/server /server
 CMD ["/server"]
