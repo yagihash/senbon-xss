@@ -5,7 +5,7 @@ REVISION := $(shell git describe --always)
 LDFLAGS := '-w -s -X github.com/yagihash/senbon-xss/server/internal/model/revision.revision=$(REVISION)'
 
 .PHONY: build
-build: test
+build:
 	go build -ldflags $(LDFLAGS) -v -o bin/$(BIN) cmd/$(BIN)/main.go
 
 .PHONY: run

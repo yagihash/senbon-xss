@@ -1,7 +1,7 @@
 FROM golang:1.13 as builder
 WORKDIR /go/src/github.com/yagihash/senbon-xss/server
 COPY . .
-ENV CGO_ENABLED 1
+ENV CGO_ENABLED 0
 ENV GOOS linux
 RUN make build
 
