@@ -18,7 +18,7 @@ vet:
 
 .PHONY: test
 test: vet
-	richgo test -v -cover -race ./... || go test -v -cover -race ./...
+	richgo test -v -cover -race ./...
 
 .PHONY: protoc
 protoc:
