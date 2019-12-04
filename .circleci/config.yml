@@ -1,0 +1,74 @@
+version: 2.1
+
+commands:
+  test:
+    description: "execute tests and generate coverage profile"
+    parameters:
+      coverprofile:
+        type: string
+        default: "coverage.txt"
+      covermode:
+        type: string
+        default: "atomic"
+      target:
+        type: string
+        default: "./..."
+    steps:
+      - run: go mod tidy
+      - run: richgo test -v -race -coverprofile=<< parameters.coverprofile >> -covermode=<< parameters.covermode >> << parameters.target >>
+
+jobs:
+  build:
+    docker:
+    - image: circleci/golang:1.13
+    environment:
+    - GOPATH: "/go"
+    steps:
+    - checkout
+
+    - restore_cache:
+        keys:
+        - go-module-{{ checksum "/home/circleci/project/go.sum" }}
+        - go-module-
+
+    - run:
+        name: mod download
+        command: make download
+
+    - save_cache:
+        key: go-module-{{ checksum "/home/circleci/project/go.sum" }}
+        paths:
+        - /go/pkg/mod/cache
+
+    - run:
+        name: build
+        command: make build
+
+  test:
+    docker:
+    - image: circleci/golang:1.13
+    environment:
+    - GOPATH: "/go"
+    steps:
+    - checkout
+
+    - restore_cache:
+        keys:
+        - go-module-{{ checksum "/home/circleci/project/go.sum" }}
+        - go-module-
+
+    - test
+
+    - run:
+        name: upload coverage profile
+        command: bash <(curl -s https://codecov.io/bash)
+
+workflows:
+  version: 2
+  test:
+    jobs:
+    - build
+    - test:
+        requires:
+        - build
+
