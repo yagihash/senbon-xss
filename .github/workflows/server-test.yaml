@@ -1,10 +1,19 @@
-name: test
+name: server-test
 on:
   push:
     branches:
       - "*"
     tags:
       - "!*"
+    paths:
+      - ./server/**
+  pull_request:
+    branches:
+      - "*"
+    tags:
+      - "!*"
+    paths:
+      - ./server/**
 
 jobs:
   github-context:
@@ -17,6 +26,7 @@ jobs:
         run: echo "${GITHUB_CONTEXT}"
   test:
     name: test
+    working-directory: ./server
     runs-on: ubuntu-latest
     container:
       image: golang:1.13
@@ -29,3 +39,4 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage.txt
+
