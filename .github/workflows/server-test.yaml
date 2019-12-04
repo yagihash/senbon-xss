@@ -7,6 +7,13 @@ on:
       - "!*"
     paths:
       - ./server/**
+  pull_request:
+    branches:
+      - "*"
+    tags:
+      - "!*"
+    paths:
+      - ./server/**
 
 jobs:
   github-context:
