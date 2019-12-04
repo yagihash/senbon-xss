@@ -1,9 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t','gcr.io/knock-xss-moe/senbon-xss-api', '--build-arg', 'revision=$REVISION', '.']
+  args: ['build', '-t','gcr.io/knock-xss-moe/senbon-xss-api', '--build-arg', 'revision=$(git describe --always)', '.']
   dir: 'server'
-  env:
-  - 'REVISION=$(git describe --always)'
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/knock-xss-moe/senbon-xss-api']
 - name: 'gcr.io/cloud-builders/gcloud'
