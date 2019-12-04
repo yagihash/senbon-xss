@@ -14,8 +14,14 @@ commands:
         type: string
         default: "./..."
     steps:
-      - run: go mod tidy
-      - run: richgo test -v -race -coverprofile=<< parameters.coverprofile >> -covermode=<< parameters.covermode >> << parameters.target >>
+      - run:
+          name: tidy
+          command: go mod tidy
+          working_directory: server
+      - run:
+          name: test and get coverage
+          command: richgo test -v -race -coverprofile=<< parameters.coverprofile >> -covermode=<< parameters.covermode >> << parameters.target >>
+          working_directory: server
 
 jobs:
   build:
@@ -28,17 +34,18 @@ jobs:
 
     - restore_cache:
         keys:
-        - go-module-{{ checksum "/home/circleci/project/go.sum" }}
+        - go-module-{{ checksum "/home/circleci/project/server/go.sum" }}
         - go-module-
 
     - save_cache:
-        key: go-module-{{ checksum "/home/circleci/project/go.sum" }}
+        key: go-module-{{ checksum "/home/circleci/project/server/go.sum" }}
         paths:
         - /go/pkg/mod/cache
 
     - run:
         name: build
         command: make build
+        working_directory: server
 
   test:
     docker:
@@ -50,7 +57,7 @@ jobs:
 
     - restore_cache:
         keys:
-        - go-module-{{ checksum "/home/circleci/project/go.sum" }}
+        - go-module-{{ checksum "/home/circleci/project/server/go.sum" }}
         - go-module-
 
     - test
@@ -58,6 +65,7 @@ jobs:
     - run:
         name: upload coverage profile
         command: bash <(curl -s https://codecov.io/bash)
+        working_directory: server
 
 workflows:
   version: 2
