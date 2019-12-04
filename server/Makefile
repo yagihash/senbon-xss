@@ -28,3 +28,7 @@ coverage:
 .PHONY: protoc
 protoc:
 	protoc -I ../proto/ --go_out=plugins=grpc:./internal/pb ../proto/*/*.proto
+
+.PHONY: ci-test
+ci-test:
+	go test -v -race -coverprofile=coverage.txt -covermode=atomic ./...

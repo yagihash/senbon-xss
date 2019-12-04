@@ -5,6 +5,8 @@ on:
       - "*"
     tags:
       - "!*"
+    paths:
+      - ./server/**
 
 jobs:
   github-context:
@@ -16,7 +18,8 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "${GITHUB_CONTEXT}"
   test:
-    name: test
+    name: server-test
+    working-directory: ./server
     runs-on: ubuntu-latest
     container:
       image: golang:1.13
