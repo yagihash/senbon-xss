@@ -1,4 +1,4 @@
-name: test
+name: server-test
 on:
   push:
     branches:
@@ -18,7 +18,7 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "${GITHUB_CONTEXT}"
   test:
-    name: server-test
+    name: test
     working-directory: ./server
     runs-on: ubuntu-latest
     container:
