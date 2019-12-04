@@ -20,7 +20,7 @@ commands:
           working_directory: server
       - run:
           name: test and get coverage
-          command: richgo test -v -race -coverprofile=<< parameters.coverprofile >> -covermode=<< parameters.covermode >> << parameters.target >>
+          command: go test -v -race -coverprofile=<< parameters.coverprofile >> -covermode=<< parameters.covermode >> << parameters.target >>
           working_directory: server
 
 jobs:
