@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := build
 
 BIN ?= server
-REVISION := $(shell git describe --always)
+REVISION ?= $(shell git describe --always)
 LDFLAGS := '-w -s -X github.com/yagihash/senbon-xss/server/internal/model/revision.revision=$(REVISION)'
 
 .PHONY: build
