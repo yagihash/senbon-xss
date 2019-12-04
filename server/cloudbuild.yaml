@@ -1,11 +1,11 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t','gcr.io/knock-xss-moe/senbon-xss-api', '--build-arg', 'revision=$SHORT_SHA', '.']
-  dir: 'server'
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/knock-xss-moe/senbon-xss-api']
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'senbon-xss-api-$BRANCH_NAME', '--image', 'gcr.io/knock-xss-moe/senbon-xss-api', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t','gcr.io/knock-xss-moe/senbon-xss-api', '--build-arg', 'revision=$SHORT_SHA', '.']
+    dir: 'server'
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/knock-xss-moe/senbon-xss-api']
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['beta', 'run', 'deploy', 'senbon-xss-api-$BRANCH_NAME', '--image', 'gcr.io/knock-xss-moe/senbon-xss-api', '--region', 'us-central1', '--platform', 'managed', '--update-env-vars', 'ENV=${_ENV},ADDR=0.0.0.0,', '--allow-unauthenticated']
 images:
-- gcr.io/knock-xss-moe/senbon-xss-api
+  - gcr.io/knock-xss-moe/senbon-xss-api
 

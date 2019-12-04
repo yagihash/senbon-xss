@@ -20,6 +20,11 @@ vet:
 test: vet
 	richgo test -v -cover -race ./...
 
+.PHONY: coverage
+coverage:
+	richgo test -v -race -coverprofile=/tmp/profile -covermode=atomic ./...
+	go tool cover -html=/tmp/profile
+
 .PHONY: protoc
 protoc:
 	protoc -I ../proto/ --go_out=plugins=grpc:./internal/pb ../proto/*/*.proto
