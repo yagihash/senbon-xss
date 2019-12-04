@@ -31,10 +31,6 @@ jobs:
         - go-module-{{ checksum "/home/circleci/project/go.sum" }}
         - go-module-
 
-    - run:
-        name: mod download
-        command: make download
-
     - save_cache:
         key: go-module-{{ checksum "/home/circleci/project/go.sum" }}
         paths:
